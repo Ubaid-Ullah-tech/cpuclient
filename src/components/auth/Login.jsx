@@ -15,7 +15,7 @@ const Login = () => {
     e.preventDefault();
     try {
       // Make the POST request using the axiosInstance
-      const res = await axios.post("/api/v2/auth/login", { email, password });
+      const res = await axios.post("https://cpuserver-react-dveloper.vercel.app/api/v2/auth/login", { email, password });
       if (res && res.data.success) {
         toast.success(res.data.message);
         localStorage.setItem("auth", JSON.stringify(res.data));
