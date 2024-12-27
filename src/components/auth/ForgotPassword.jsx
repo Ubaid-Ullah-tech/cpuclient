@@ -1,9 +1,9 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "../../axiosInstance"; // Import axiosInstance
 import { useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 
-const ForgotPasssword = () => {
+const ForgotPassword = () => {
   const [email, setEmail] = useState("");
   const [newPassword, setNewPassword] = useState("");
   const [answer, setAnswer] = useState("");
@@ -14,6 +14,7 @@ const ForgotPasssword = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Send POST request using axiosInstance
       const res = await axios.post("/api/v2/auth/forgot-password", {
         email,
         newPassword,
@@ -124,4 +125,4 @@ const ForgotPasssword = () => {
   );
 };
 
-export default ForgotPasssword;
+export default ForgotPassword;
