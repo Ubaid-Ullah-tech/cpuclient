@@ -10,27 +10,25 @@ const Login = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-// Axios instance for communicating with the server
-  const axiosInstance = axios.create({
-    baseURL: "https://cpuserver-react-dveloper.vercel.app", // Update the base URL for your deployed server
-  });
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    try {
-      const res = await axiosInstance.post("/api/v2/auth/login", { email, password });
 
-      if (res.data.success) {
-        toast.success(res.data.message);
-        localStorage.setItem("auth", JSON.stringify(res.data)); // Store token and user info
-        navigate(location.state || "/"); // Redirect user to previous location or homepage
-      } else {
-        toast.error(res.data.message); // Display error message from the response
-      }
-    } catch (error) {
-      console.error("Error:", error.response ? error.response.data : error.message);
-      toast.error("Something went wrong!");
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  try {
+    const res = await axios.post("https://cpuserver-react-dveloper.vercel.app/api/v2/auth/login", { email, password });
+
+    if (res.data.success) {
+      toast.success(res.data.message);
+      localStorage.setItem("auth", JSON.stringify(res.data)); // Store token and user info
+      navigate(location.state || "/"); // Redirect user to previous location or homepage
+    } else {
+      toast.error(res.data.message); // Display error message from the response
     }
-  };
+  } catch (error) {
+    console.error("Error:", error.response ? error.response.data : error.message);
+    toast.error("Something went wrong!");
+  }
+};
+
 
   return (
     <div
