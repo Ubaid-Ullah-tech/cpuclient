@@ -12,23 +12,21 @@ const Login = () => {
   const location = useLocation();
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
-  try {
-    const res = await axios.post("https://cpuserver-react-dveloper.vercel.app/api/v2/auth/login", { email, password });
-
-    if (res.data.success) {
-      toast.success(res.data.message);
-      localStorage.setItem("auth", JSON.stringify(res.data)); // Store token and user info
-      navigate(location.state || "/"); // Redirect user to previous location or homepage
-    } else {
-      toast.error(res.data.message); // Display error message from the response
+    e.preventDefault();
+    try {
+      const res = await axios.post("https://cpuserver-react-dveloper.vercel.app/api/v2/auth/login", { email, password });
+      if (res && res.data.success) {
+        toast.success(res.data.message);
+        localStorage.setItem("auth", JSON.stringify(res.data));
+        navigate(location.state || "/");
+      } else {
+        toast.error(res.data.message);
+      }
+    } catch (error) {
+      console.log(error);
+      toast.error("Something went wrong");
     }
-  } catch (error) {
-    console.error("Error:", error.response ? error.response.data : error.message);
-    toast.error("Something went wrong!");
-  }
-};
-
+  };
 
   return (
     <div
@@ -97,6 +95,27 @@ const Login = () => {
             color: "black", // Set text color to black
           }}
         />
+        <div
+          style={{
+            textAlign: "center",
+            marginBottom: "1rem",
+          }}
+        >
+          <button
+            type="button"
+            onClick={() => navigate("/forgot-password")}
+            style={{
+              backgroundColor: "transparent",
+              border: "none",
+              color: "#007bff",
+              cursor: "pointer",
+              textDecoration: "underline",
+            }}
+          >
+            Forgot Password?
+          </button>
+        </div>
+
         <button
           type="submit"
           style={{
