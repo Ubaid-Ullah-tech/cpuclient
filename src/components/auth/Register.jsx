@@ -3,7 +3,6 @@ import toast from "react-hot-toast";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 import ubaid from '../../assets/ubaid.jpg';
-import { Text } from "lucide-react";
 
 const Register = () => {
   const [name, setName] = useState("");
@@ -15,11 +14,16 @@ const Register = () => {
 
   const navigate = useNavigate();
 
+  // Axios instance for communicating with the server
+  const axiosInstance = axios.create({
+    baseURL: "https://cpuserver-react-dveloper.vercel.app", // Update the base URL for your deployed server
+  });
+
   // Form submission handler
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axios.post("/api/v2/auth/register", {
+      const res = await axiosInstance.post("/api/v2/auth/register", {
         name,
         email,
         password,
@@ -62,7 +66,7 @@ const Register = () => {
     backgroundColor: "#ffffff",
     padding: "20px",
     borderRadius: "10px",
-    text:"black",
+    text: "black",
     boxShadow: "0 4px 6px rgba(0, 0, 0, 0.1)",
   };
 
