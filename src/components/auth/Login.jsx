@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "../../axiosInstance"; // Import axiosInstance
+import axios from "axios";
 import { useNavigate, useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
 import ubaid from '../../assets/ubaid.jpg';
@@ -10,15 +10,13 @@ const Login = () => {
 
   const navigate = useNavigate();
   const location = useLocation();
-// Axios instance for communicating with the server
-  const axiosInstance = axios.create({
-    baseURL: "https://cpuserver-react-dveloper.vercel.app", // Update the base URL for your deployed server
-  });
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      // Make the POST request using the axiosInstance
-      const res = await axiosInstance.post("/api/v2/auth/login", { email, password });
+      // Use the full URL for the request
+      const res = await axios.post("https://cpuserver-react-dveloper.vercel.app/api/v2/auth/login", { email, password });
+      
       if (res && res.data.success) {
         toast.success(res.data.message);
         localStorage.setItem("auth", JSON.stringify(res.data));
