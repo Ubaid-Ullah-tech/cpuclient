@@ -1,30 +1,10 @@
 import React from 'react';
-import Ubaidroute from './components/routing/ubaidRoute';
-// import UbaidRoute fro./components/routing/Ubaidroute.jsxjsx'; // Explicitly include .jsx if needed
+import Routerr from './components/routing/Routerr';
 
 const App = () => {
   return (
-    <Ubaidroute/>
+    <Routerr/>
   );
 };
 
 export default App;
-
-
-
-
-
-
-
-// import React from 'react'
-// import UbaidRoute from './components/routing/ubaidRoute';
-
-// const App = () => {
-//   return (
-//     <>
-//     <UbaidRoute/>
-//     </>
-//   )
-// }
-
-// export default App
