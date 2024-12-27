@@ -17,7 +17,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await axiosInstance.post("https://cpuserver-react-dveloper.vercel.app/api/v2/auth/login", { email, password });
+      const res = await axiosInstance.post("/api/v2/auth/login", { email, password });
 
       if (res.data.success) {
         toast.success(res.data.message);
