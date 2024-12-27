@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import axios from "axios";
+import axios from "../../axiosInstance"; // Import axiosInstance
 import { useNavigate, useLocation } from "react-router-dom";
 import toast from "react-hot-toast";
 import ubaid from '../../assets/ubaid.jpg';
@@ -14,6 +14,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
+      // Make the POST request using the axiosInstance
       const res = await axios.post("/api/v2/auth/login", { email, password });
       if (res && res.data.success) {
         toast.success(res.data.message);
