@@ -6,7 +6,7 @@ import Register from '../auth/Register.jsx'; // Ensure this path is correct
 import Login from '../auth/Login.jsx'; // Ensure this path is correct
 import ForgotPassword from '../auth/ForgotPassword.jsx'; // Ensure this path is correct
 
-const Routee = () => {
+const Routerr = () => {
   return (
     <Routes>
       <Route path="/" element={<Layout />}>
@@ -19,7 +19,7 @@ const Routee = () => {
   );
 };
 
-export default Routee;
+export default Routerr;
 
 
 
